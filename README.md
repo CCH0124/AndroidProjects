@@ -30,3 +30,41 @@
     - 如過沒有 `activity` 能夠接收 `intent`，會顯示訊息讓使用者知道
     - 回傳一個 `intent`
 - `getString(R.string.stringname)` 取得字串資源值
+
+## stopWatch
+- 預設情況，每一個 APP 都會在自己的程序裡執行
+- 只有**主執行緒**可以更新使用者介面
+- `Handler` 可以用來安排程式碼的執行時間，或將程式碼發送到不同的執行緒
+- 改變裝置組態會導致 `activity` 被銷毀和重建
+    - 畫面旋轉
+- `activity` 會從 `Activity` 類別繼承生命週期方法
+- `onSaveInstanceState(Bundle)` 在 `activity` 被銷毀之前保存它的狀態，可以在 `onCreate` 裡使用 `Bundle` 物件來回復狀態
+    - bundle.put\*("name", value) 將值加入 `Bundle`
+    - bundle.get\*("name") `Bundle` 取值
+-  `onCreate` 負責 `activity` 生；`onDestroy` 負責 `activity` 死
+- `onRestart`、`onStart` 和 `onStop` 負責 `activity` 顯示與否
+- `onResume` 與 `onPause` 負責處裡 `activity` 被聚焦與失焦情況
+
+##### 生命週期指南
+|方法|呼叫時機|下一個方法|
+|---|---|---|
+|onCreate()|當 `activity` 第一次被建立時。使用此方法做一般靜態設定，項是建立視區等，它會給 `Bundle` 物件，包含先前保存的 activity 狀態。|onStart()|
+|onRestart()|當 `activity` 已經停止，緊接著就要再次啟動時。|onStart()|
+|onStart()|當 `activity` 正要顯示出來時。假如 `activity` 進入前景，這個方法結束之後會執行 `onResume()` 或者如果 `activity` 隱藏起來，隨後會執行 `onStop()`| onResume() Or onStop()|
+|onResume()|當 `activity` 在前景時|onPause()|
+|onPause()|當 `acticity` 因為其它的 `acticity` 恢復執行而不再處於前景時。下一個 `activity` 在這個方法結束之前都不會恢復，所以這個方法的程式碼必須盡快執行完畢。假如 `activity` 回到前景，這個方法結束後會執行 `onResume()`，或者如果它隱藏起來，會執行 `onStop()`| onResume() Or onStop()|
+|onStop()|當 `activity` 隱藏起來時。原因可能是其他的 `activity` 完全遮蓋它，或因為這個 `activity` 被銷毀。如果 `activity` 再度顯示，這個方法結束後會執行 `onRestart()`；如果 `activity` 即將被銷毀，後面就接著 `onDestroy()`|onRestart() Or onDestroy()|
+|onDestroy()|當 `activity` 即將被銷毀時，或著因為 `activity` 結束了|none|
+
+![](https://i.imgur.com/FPXTs7H.png)
+
+##### Example
+
+1. 使用者啟動 `activity`，並開始使用它。
+onCreate -> onStart -> onResume
+2. 使用者啟動 `activity`，開始使用它，然後切換到其它 APP
+onCreate -> onStart -> onResume > onPause -> onStop
+3. 使用者啟動 `activity`，開始使用它，接著旋轉裝置，在切換到其它 APP，然後回到我們的 `activity`
+onCreate -> onStart -> onResume > onPause -> onStop > onDestroy -> onCreate -> onStart -> onResume -> onPause -> onStop -> onRestart -> onStart -> onResume
+
+
