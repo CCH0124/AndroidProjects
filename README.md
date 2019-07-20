@@ -68,3 +68,22 @@ onCreate -> onStart -> onResume > onPause -> onStop
 onCreate -> onStart -> onResume > onPause -> onStop > onDestroy -> onCreate -> onStart -> onResume -> onPause -> onStop -> onRestart -> onStart -> onResume
 
 
+## Duck 
+### View 的介紹
+- 所有 GUI 元件都是 `android.view.View` 類別的子類別
+- 所有版面都是 `android.view.ViewGroup` 類別的子類別，`ViewGroup` 是一個能夠容納多個 `View` 的 `View`
+- 版面 XML 檔會被轉換樹狀結構的 `ViewGroup`
+- `LinearLayout` 版面可用 `orientation` 指定直向或橫向
+- `FrameLayout` 會將 `View` 堆疊起來
+- 可使用 `android:padding*` 指定周圍邊距
+![](https://thinhme.files.wordpress.com/2015/10/padding_margin.png?w=445&h=279)
+- `android:weight`，在使用 `LinearLayout` 希望 `View` 元件使用剩餘版面的空間
+![](https://thinhme.files.wordpress.com/2015/10/layout_weight1.png?w=525&h=334)
+- `android:layout_gravity` 可指定 `View` 在其可用空間中的位置
+- `android:gravity` 用來指定 `View` 元件內容在 `View` 裡面的位置
+![](https://thinhme.files.wordpress.com/2015/10/gravity1.png?w=531&h=351)
+- `<ToogleButton>` 定義開關狀態
+- `<Switch>` 可用來定義開關
+- `<ScrollView>` 或 `<HorizontalScrollView>` 添加卷軸
+
+[Ref](https://thinhme.wordpress.com/2015/10/24/lesson-6layout-in-android/)
