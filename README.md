@@ -87,3 +87,11 @@ onCreate -> onStart -> onResume > onPause -> onStop > onDestroy -> onCreate -> o
 - `<ScrollView>` 或 `<HorizontalScrollView>` 添加卷軸
 
 [Ref](https://thinhme.wordpress.com/2015/10/24/lesson-6layout-in-android/)
+
+## MyConstraintLayout
+- 約束版面是為了搭配 Android Studio 的設計編輯器一起使用而設計的
+- 要夠過加入約束來定位 `View`。每一個 `View` 都需要一個橫向或直向的約束
+- 將 `View` 置中，必須為 `View` 的對邊加上約束，並更改 `View` 偏移值，來改變他在兩個約束之間的位置
+- 如果 `View` 對邊有約束，你可以更改 `View` 的尺寸，讓它符合上限
+- 你可以設定 `View` 尺寸的長寬比
+- 按下 `Infer Constraints` 按鈕後，Android Studio 會根據 `View` 在藍圖上的位置來加入約束
