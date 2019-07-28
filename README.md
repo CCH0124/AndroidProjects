@@ -95,3 +95,15 @@ onCreate -> onStart -> onResume > onPause -> onStop > onDestroy -> onCreate -> o
 - 如果 `View` 對邊有約束，你可以更改 `View` 的尺寸，讓它符合上限
 - 你可以設定 `View` 尺寸的長寬比
 - 按下 `Infer Constraints` 按鈕後，Android Studio 會根據 `View` 在藍圖上的位置來加入約束
+
+## Starbuzz
+- 將腦中點子分成`頂層 activity`、`分類 activity`、`詳情/編輯 activity`
+    - 分類用途是從頂層 `activity` 巡覽到詳情/編輯 `activity`
+- `list View`（ListView） 會在一個清單裡顯示項目
+    - 用 `ListView` 元素加入至版面設定
+- 可以在版面裡面使用 `android:entries`，用在 `string.xml` 裡面設定的陣列幫 `ListView` 填入項目
+- 配接器扮演 `AdapterView` 與資料來源之間的橋樑
+    - `ListView` 和 `Spinners` 都屬於 `AdapterView` 型態
+- `ArrayAdapter` 是搭配陣列一起使用的配接器
+- 處裡 `Button` 的按下事件，要在版面設定中使用 `android:onClick`
+    - 要在其他地方處裡按下事件，要建立監聽器（AdapterView.OnItemClickListener）並實作案下的動作
